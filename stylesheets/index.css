@@ -1,0 +1,17 @@
+ html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+}
+
+canvas {
+    height: 700px;
+    width: 800px;
+    touch-action: none;
+    
+}
+
+#canvasContainer {
+    width: 800px;
+    margin: 0 auto;
+}
