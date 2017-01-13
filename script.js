@@ -47,5 +47,10 @@ function requestGroundStations() {
 
 function parseGroundStations(xml) {
     const xmlDoc = xml.responseXML;
+    const stationNames =  $.makeArray(xmlDoc.getElementsByTagName("Name")).map(node => node.innerHTML);
+    const stationLongitudes = $.makeArray(xmlDoc.getElementsByTagName("Longitude")).map(node => node.innerHTML);
+    const stationLatitudes = $.makeArray(xmlDoc.getElementsByTagName("Latitude")).map(node => node.innerHTML);
     
+    
+    console.log(stationNames, longitudes, latitudes);
 }
