@@ -22,10 +22,10 @@
                 <h3>NASA Web World Wind - NASA Ground Stations</h3>
             </header>
             <nav>
-                <form onsubmit="findLocation()">
-                    <input type="number" name="latitudeInput" placeholder="latitude"></input>
+                <form onsubmit="findLocation(event)">
+                    <input type="text" name="latitudeInput" placeholder="latitude"></input>
                     <br>
-                    <input type="number" name="longitudeInput" placeholder="longitude"></input>
+                    <input type="text" name="longitudeInput" placeholder="longitude"></input>
                     <br>
                     <input type="submit" name="submit"></input>
                 </form>

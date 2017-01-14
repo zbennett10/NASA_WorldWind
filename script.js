@@ -96,15 +96,24 @@ function addStationLayer(nameArr, longArr, latArr) {
 
 function findLocation(e) {
     e.preventDefault(); //prevent form from refreshing page
+    e.stopImmediatePropagation(); //prevent downstream chain of event handlers
     console.log("finding location.....")
-    var latitude = e.path[0][0].value; //Latitude
-    var longitude = e.path[0][1].value; //Longitude 
+    var latitude = e.path[0][0].value.trim(); //Latitude
+    var longitude = e.path[0][1].value.trim(); //Longitude
+    var fullSearchString = `${latitude}, ${longitude}`;
+    var searchValidator = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/;
     
-    var animator = new WorldWind.GoToAnimator(worldWindWindow);
-    animator.goTo(new WorldWind.Location(latitude, longitude));
+    if(fullSearchString.match(searchValidator)) {
+        var animator = new WorldWind.GoToAnimator(worldWindWindow);
+        animator.goTo(new WorldWind.Location(latitude, longitude));
+    } else {
+        //implement error handling here
+        console.log("Invalid coordinates. Latitude ranges from -90 to 90 and Longitude ranges from -180 to 180.")
+        return false;
+    }
+
 }
 
 
 
 // add ability to search a groundStation 
-// add ability to search lat and long and be taken to that positiont.
