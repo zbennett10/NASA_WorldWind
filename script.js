@@ -27,7 +27,7 @@ function createLayers() {
     worldWindWindow = new WorldWind.WorldWindow('worldWindCanvas');
     //adds basic image layers to world wind
     worldWindWindow.addLayer(new WorldWind.BMNGOneImageLayer());
-    worldWindWindow.addLayer(new WorldWind.BMNGLandsatLayer());
+    //worldWindWindow.addLayer(new WorldWind.BMNGLandsatLayer());
     worldWindWindow.addLayer(new WorldWind.BingAerialWithLabelsLayer());
 
      //add compass layer
@@ -65,8 +65,12 @@ function addStationLayer(nameArr, longArr, latArr) {
 
     //instantiate attribute object for placemark and set properties
     var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
-        placemarkAttributes.imageScale = 1;
+        placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/pushpins/plain-blue.png";
+        placemarkAttributes.imageScale = .4;
+        placemarkAttributes.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.3, WorldWind.OFFSET_FRACTION, 0.0);
         placemarkAttributes.imageColor = WorldWind.Color.BLUE;
+        placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.5, WorldWind.OFFSET_FRACTION, 1.0);
+        placemarkAttributes.labelAttributes.scale = .8;
         placemarkAttributes.drawLeaderLine = true;
         placemarkAttributes.leaderLineAttributes.outlineColor = WorldWind.Color.RED;
 
