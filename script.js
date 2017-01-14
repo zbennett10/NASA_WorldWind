@@ -80,7 +80,8 @@ function addStationLayer(nameArr, longArr, latArr) {
         placemarkAttributes.labelAttributes.scale = .8;
         placemarkAttributes.drawLeaderLine = true;
         placemarkAttributes.leaderLineAttributes.outlineColor = WorldWind.Color.RED;
-
+    
+    //iterates through each ground station and adds a placemark to the placemark layer
     for(var i = 0; i < nameArr.length; i++) {
         //instantiate placemark object and set properties
         var placemark = new WorldWind.Placemark(new WorldWind.Position(Number(latArr[i]), Number(longArr[i])), true, null);
@@ -94,15 +95,17 @@ function addStationLayer(nameArr, longArr, latArr) {
     worldWindWindow.addLayer(placemarkLayer); 
 }
 
+//takes user input and uses an animator to search for gps location
 function findLocation(e) {
     e.preventDefault(); //prevent form from refreshing page
     e.stopImmediatePropagation(); //prevent downstream chain of event handlers
     console.log("finding location.....")
-    var latitude = e.path[0][0].value.trim(); //Latitude
-    var longitude = e.path[0][1].value.trim(); //Longitude
+    var latitude = e.path[0][0].value.trim(); 
+    var longitude = e.path[0][1].value.trim();
     var fullSearchString = `${latitude}, ${longitude}`;
     var searchValidator = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/;
     
+    //validates users input to match correct latitude longitude format
     if(fullSearchString.match(searchValidator)) {
         var animator = new WorldWind.GoToAnimator(worldWindWindow);
         animator.goTo(new WorldWind.Location(latitude, longitude));
@@ -113,7 +116,5 @@ function findLocation(e) {
     }
 
 }
-
-
 
 // add ability to search a groundStation 
