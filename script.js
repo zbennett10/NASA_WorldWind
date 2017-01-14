@@ -1,3 +1,6 @@
+//globals-----------------------------------------------------
+let worldWindWindow;
+
 //event handlers------------------------------------------------
 //window event handlers
 window.addEventListener('load', onWindowLoad);
@@ -21,9 +24,7 @@ function onWindowLoad() {
 
 //adds world wind and basic layers to canvas
 function createLayers() {
-    //adds Nasa World Wind to canvas
-    const worldWindWindow = new WorldWind.WorldWindow('worldWindCanvas');
-
+    worldWindWindow = new WorldWind.WorldWindow('worldWindCanvas');
     //adds basic image layers to world wind
     worldWindWindow.addLayer(new WorldWind.BMNGOneImageLayer());
     worldWindWindow.addLayer(new WorldWind.BMNGLandsatLayer());
@@ -33,25 +34,6 @@ function createLayers() {
     worldWindWindow.addLayer(new WorldWind.CompassLayer());
     worldWindWindow.addLayer(new WorldWind.CoordinatesDisplayLayer(worldWindWindow));
     worldWindWindow.addLayer(new WorldWind.ViewControlsLayer(worldWindWindow));
-
-    //practice putting a pin on map
-    //instantiate placemark object and set properties
-    var placemark = new WorldWind.Placemark(new WorldWind.Position(47.684444, -121,129722, 1e2), true, null);
-        placemark.label = "Practice";
-        placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
-
-    //instantiate attribute object for placemark and set properties
-    var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
-        placemarkAttributes.drawLeaderLine = true;
-        placemarkAttributes.leaderLineAttributes.outlineColor = WorldWind.Color.RED;
-
-    //instantiate placemark layer
-    var placemarkLayer = new WorldWind.RenderableLayer("Placemarks");
-
-    //apply placemark attributes to placemark
-    placemark.attributes = placemarkAttributes;
-    placemarkLayer.addRenderable(placemark); //apply placemark to layer
-    worldWindWindow.addLayer(placemarkLayer); //apply layer to map
 }
 
 //xml request to NASA API for Ground Stations
@@ -73,10 +55,34 @@ function parseGroundStations(xml) {
     const stationLongitudes = $.makeArray(xmlDoc.getElementsByTagName("Longitude")).map(node => node.innerHTML);
     const stationLatitudes = $.makeArray(xmlDoc.getElementsByTagName("Latitude")).map(node => node.innerHTML);
     
-
-    
-    //console.log(stationNames, stationLongitudes, stationLatitudes);
+    addStationLayer(stationNames, stationLongitudes, stationLatitudes);
 }
 
 //create placemark layer - put in load function or new function
-//write function that takes station array data and places a pin on the layer for each station
+function addStationLayer(nameArr, longArr, latArr) {
+    //instantiate placemark layer
+     var placemarkLayer = new WorldWind.RenderableLayer("Placemarks");
+
+    //instantiate attribute object for placemark and set properties
+    var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
+        placemarkAttributes.imageScale = 1;
+        placemarkAttributes.imageColor = WorldWind.Color.BLUE;
+        placemarkAttributes.drawLeaderLine = true;
+        placemarkAttributes.leaderLineAttributes.outlineColor = WorldWind.Color.RED;
+
+    for(var i = 0; i < nameArr.length; i++) {
+        //instantiate placemark object and set properties
+        var placemark = new WorldWind.Placemark(new WorldWind.Position(Number(latArr[i]), Number(longArr[i])), true, null);
+        placemark.label = nameArr[i];
+        placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+        placemark.alwaysOnTop = true;
+        placemark.attributes = placemarkAttributes;
+        placemarkLayer.addRenderable(placemark);
+    }
+    //apply layer to map
+    worldWindWindow.addLayer(placemarkLayer); 
+}
+
+//add actual pushpins and learn about how to set image attributes and offset values
+// add ability to search a groundStation 
+// add ability to search lat and long and be taken to that position
