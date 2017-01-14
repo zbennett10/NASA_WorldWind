@@ -95,11 +95,13 @@ function addStationLayer(nameArr, longArr, latArr) {
 }
 
 function findLocation(e) {
-    e.preventDefault();
-    console.log(e.path[0][0].value);
-    console.log(e.path[0][1].value);
+    e.preventDefault(); //prevent form from refreshing page
     console.log("finding location.....")
-
+    var latitude = e.path[0][0].value; //Latitude
+    var longitude = e.path[0][1].value; //Longitude 
+    
+    var animator = new WorldWind.GoToAnimator(worldWindWindow);
+    animator.goTo(new WorldWind.Location(latitude, longitude));
 }
 
 
