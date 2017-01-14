@@ -1,10 +1,11 @@
 //globals-----------------------------------------------------
 let worldWindWindow;
 
-//event handlers------------------------------------------------
-//window event handlers
+//event listeners------------------------------------------------
 window.addEventListener('load', onWindowLoad);
 window.addEventListener('resize', setCanvasSize);
+document.querySelector('form').addEventListener('submit', findLocation);
+
 
 //helper functions----------------------------------------------
 
@@ -12,14 +13,20 @@ window.addEventListener('resize', setCanvasSize);
 function setCanvasSize() {
 //container that fixes content during window resize
     const canvas = document.querySelector('canvas');
-    canvas.height = window.outerHeight;
-    canvas.width = window.outerWidth;
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
 }
 
 //onload event handler for window
 function onWindowLoad() {
     createLayers();
     requestGroundStations();
+
+    //add dynamic text to footer
+    const footerText = document.createElement('span');
+    footerText.innerText = `All Rights Reserved. Zachary Bennett © ${(new Date()).getFullYear()}`;
+    const footer = document.querySelector('#footer');
+    footer.appendChild(footerText);
 }
 
 //adds world wind and basic layers to canvas
@@ -87,6 +94,15 @@ function addStationLayer(nameArr, longArr, latArr) {
     worldWindWindow.addLayer(placemarkLayer); 
 }
 
-//add actual pushpins and learn about how to set image attributes and offset values
+function findLocation(e) {
+    e.preventDefault();
+    console.log(e.path[0][0].value);
+    console.log(e.path[0][1].value);
+    console.log("finding location.....")
+
+}
+
+
+
 // add ability to search a groundStation 
-// add ability to search lat and long and be taken to that position
+// add ability to search lat and long and be taken to that positiont.
