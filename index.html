@@ -20,29 +20,30 @@
     </head>
 
     <body>
-        <div class="container">
-            <header class="row">
+            <header>
                 <h3>NASA Web World Wind - NASA Ground Stations</h3>
             </header>
+        <div class="container-fluid">
             <div class="main-body-container row">
-                <nav>
-                    <form onsubmit="findLocation(event)" class="col-lg-6">
+                <nav class=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <form onsubmit="findLocation(event)">
                         <input type="text" name="latitudeInput" placeholder="latitude"></input>
-                        <br>
+                     <br>
                         <input type="text" name="longitudeInput" placeholder="longitude"></input>
-                        <br>
+                      <br>
                         <input type="submit" name="submit" value="Find"></input>
                     </form>
                 </nav>
-                <div id="canvasContainer">
-                    <canvas id="worldWindCanvas" class="col-lg-6">
+                <canvas id="worldWindCanvas" class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                  This browser doesn't support HTML5. Please update your browser to view this content.
-                    </canvas>
+                </canvas>     
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <h1>This is the right side column</h1>
                 </div>
             </div>
-            <footer id="footer" class="row"></footer>
         </div>
-
+            <footer id="footer"></footer>
+       
             <!-- load external script -->
             <script type="text/javascript" src="script.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
