@@ -20,11 +20,11 @@
     </head>
 
     <body>
-            <header>
+            <header class="jumbotron">
                 <h3>NASA Web World Wind - NASA Ground Stations</h3>
             </header>
         <div class="container-fluid">
-            <div class="main-body-container row">
+            <div "row">
                 <nav class=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <form onsubmit="findLocation(event)">
                         <input type="text" name="latitudeInput" placeholder="latitude"></input>
@@ -37,17 +37,27 @@
                 <canvas id="worldWindCanvas" class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                  This browser doesn't support HTML5. Please update your browser to view this content.
                 </canvas>     
-                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <h1>This is the right side column</h1>
+                <div id="description" class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <h1>Description</h1>
+                    <br>
+                    <p>This is a small project I created using Javascript, Bootstrap and the NASA Web World Wind API.
+                        This application allows you to interact with this map of the Earth and search for GPS coordinates by
+                        latitude and longitude.
+                    </p>
+                    <br>
+                    <p>As I find time, I will be adding more functionality!</p>
+                    <br>
+                    <img class"" src="assets/github.png"/>
+                    
                 </div>
             </div>
         </div>
-            <footer id="footer"></footer>
+            <footer class="jumbotron" id="footer"></footer>
        
             <!-- load external script -->
             <script type="text/javascript" src="script.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+            <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
     </body>
 
