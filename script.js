@@ -3,19 +3,10 @@ let worldWindWindow;
 
 //event listeners------------------------------------------------
 window.addEventListener('load', onWindowLoad);
-//window.addEventListener('resize', setCanvasSize);
 document.querySelector('form').addEventListener('submit', findLocation);
 
 
 //helper functions----------------------------------------------
-
-//sets height and width to 
-// function setCanvasSize() {
-// //container that fixes content during window resize
-//     const canvas = document.querySelector('canvas');
-//     canvas.height = window.innerHeight;
-//     canvas.width = window.innerWidth;
-// }
 
 //onload event handler for window
 function onWindowLoad() {
