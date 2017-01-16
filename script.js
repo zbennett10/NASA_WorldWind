@@ -12,12 +12,20 @@ document.querySelector('form').addEventListener('submit', findLocation);
 function onWindowLoad() {
     createLayers();
     requestGroundStations();
+    setTimeout(setInitialView, 200);
+    worldWindWindow.navigator.range = 15e6;
 
     //add dynamic text to footer
     const footerText = document.createElement('span');
     footerText.innerText = `All Rights Reserved. Zachary Bennett © ${(new Date()).getFullYear()}`;
     const footer = document.querySelector('#footer');
     footer.appendChild(footerText);
+}
+
+//animates a short map move on page load
+function setInitialView() {
+    var animator = new WorldWind.GoToAnimator(worldWindWindow);
+        animator.goTo(new WorldWind.Location(65, -80.0));
 }
 
 //adds world wind and basic layers to canvas

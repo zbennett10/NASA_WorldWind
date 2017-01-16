@@ -44,6 +44,12 @@ form > input {
     font-size: 24px;
 }
 
+#nasaLogo {
+    margin-top: 70px;
+    height: 160px;
+    width: 200px;
+}
+
 footer{
     font-family: 'montserrat';
     font-size: 18px;
