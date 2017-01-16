@@ -25,17 +25,19 @@
         </header>
         <div class="container-fluid">
             <div "row">
-                <form class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12" onsubmit="findLocation(event)">
-                    <input type="text" name="latitudeInput" placeholder="latitude"></input>
-                    <br>
-                    <input type="text" name="longitudeInput" placeholder="longitude"></input>
-                    <br>
-                    <input type="submit" name="submit" value="Find"></input>
-                </form>
-                <canvas id="worldWindCanvas" class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div id="searchFormContainer" class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                    <form id="searchForm" onsubmit="findLocation(event)">
+                        <input type="text" name="latitudeInput" placeholder="latitude"></input>
+                        <br>
+                        <input type="text" name="longitudeInput" placeholder="longitude"></input>
+                        <br>
+                        <input type="submit" name="submit" value="Find"></input>
+                    </form>
+                </div>
+                <canvas id="worldWindCanvas" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
                  This browser doesn't support HTML5. Please update your browser to view this content.
                 </canvas>     
-                <div id="description" class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div id="description" class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
                     <h1>Description</h1>
                     <br>
                     <p>This is a small project I created using Javascript, Bootstrap and the NASA Web World Wind API.
