@@ -1,15 +1,10 @@
-//globals-----------------------------------------------------
+//globals
 let worldWindWindow;
 
 //event listeners------------------------------------------------
-window.addEventListener('load', onWindowLoad);
 document.querySelector('form').addEventListener('submit', findLocation);
 
-
-//helper functions----------------------------------------------
-
-//onload event handler for window
-function onWindowLoad() {
+window.onload = function() {
     createLayers();
     requestGroundStations();
     setTimeout(setInitialView, 200);
@@ -21,6 +16,8 @@ function onWindowLoad() {
     const footer = document.querySelector('#footer');
     footer.appendChild(footerText);
 }
+
+//helper functions----------------------------------------------
 
 //animates a short map move on page load
 function setInitialView() {
