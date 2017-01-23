@@ -1,8 +1,10 @@
 //globals
 let worldWindWindow;
+const layerButtons = document.querySelectorAll('button[data-layer]');
 
 //event listeners------------------------------------------------
 document.querySelector('form').addEventListener('submit', findLocation);
+layerButtons.forEach(button => button.addEventListener('click', showOrHideLayer));
 
 window.onload = function() {
     createLayers();
@@ -15,6 +17,7 @@ window.onload = function() {
     footerText.innerText = `All Rights Reserved. Zachary Bennett © ${(new Date()).getFullYear()}`;
     const footer = document.querySelector('#footer');
     footer.appendChild(footerText);
+    console.log(worldWindWindow.layers.forEach(layer => console.log(layer.displayName)));
 }
 
 //helper functions----------------------------------------------
@@ -37,6 +40,28 @@ function createLayers() {
     worldWindWindow.addLayer(new WorldWind.CompassLayer());
     worldWindWindow.addLayer(new WorldWind.CoordinatesDisplayLayer(worldWindWindow));
     worldWindWindow.addLayer(new WorldWind.ViewControlsLayer(worldWindWindow));
+}
+
+function showOrHideLayer() {
+    const bingAerialLayer = worldWindWindow.layers[1];
+    const compassLayer = worldWindWindow.layers[2];
+    const coordinatesLayer = worldWindWindow.layers[3];
+    const viewControlsLayer = worldWindWindow.layers[4];
+
+    switch(this.dataset.layer) {
+        case 'bingAerial':
+            bingAerialLayer.opacity > 0 ? bingAerialLayer.opacity = 0 : bingAerialLayer.opacity = 1;
+            break;
+        case 'compass':
+            compassLayer.opacity > 0 ? compassLayer.opacity = 0 : compassLayer.opacity = 1;
+            break;
+        case 'coordinates':
+            coordinatesLayer.opacity > 0 ? coordinatesLayer.opacity = 0 : coordinatesLayer.opacity = 1;
+            break;
+        case 'viewControls':
+            viewControlsLayer.opacity > 0 ? viewControlsLayer.opacity = 0 : viewControlsLayer.opacity = 1;
+            break;
+    }
 }
 
 //xml request to NASA API for Ground Stations
@@ -114,3 +139,6 @@ function findLocation(e) {
 }
 
 // add ability to search a groundStation 
+//add bootstrap button group that allows you to remove and add layers
+
+//add data-layer to each button and cause it to correspond with a layer in code

@@ -60,3 +60,19 @@ footer{
     background-color: lightgray;
     margin-top: 10px;
 }
+
+#layerButtonContainer {
+    margin-top: 20px;
+    width: 80px;
+}
+
+#layerButtonContainer > button {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+}
+
+#layerButtonContainer > button:not(:first-child) {
+    margin-top: 10px;
+}
