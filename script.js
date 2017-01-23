@@ -1,6 +1,3 @@
-//check for browser
-console.log(navigator.userAgent);
-
 //globals
 let worldWindWindow;
 const layerButtons = document.querySelectorAll('button[data-layer]');
@@ -37,7 +34,6 @@ function createLayers() {
     worldWindWindow = new WorldWind.WorldWindow('worldWindCanvas');
     //adds basic image layers to world wind
     worldWindWindow.addLayer(new WorldWind.BMNGOneImageLayer());
-    //worldWindWindow.addLayer(new WorldWind.BMNGLandsatLayer());
     worldWindWindow.addLayer(new WorldWind.BingAerialWithLabelsLayer());
 
      //add compass layer
@@ -122,7 +118,6 @@ function addStationLayer(nameArr, longArr, latArr) {
     }
     //apply layer to map
     worldWindWindow.addLayer(placemarkLayer); 
-    console.log(worldWindWindow.layers);
 }
 
 //takes user input and uses an animator to search for gps location
@@ -146,8 +141,3 @@ function findLocation(e) {
     }
 
 }
-
-// add ability to search a groundStation 
-//add bootstrap button group that allows you to remove and add layers
-
-//add data-layer to each button and cause it to correspond with a layer in code
