@@ -7,7 +7,9 @@ const layerButtons = document.querySelectorAll('button[data-layer]');
 
 //event listeners------------------------------------------------
 document.querySelector('form').addEventListener('submit', findLocation);
-layerButtons.forEach(button => button.addEventListener('click', showOrHideLayer));
+Array.prototype.forEach.call(layerButtons, function(button) {
+    button.addEventListener('click', showOrHideLayer);
+});
 
 window.onload = function() {
     createLayers();
