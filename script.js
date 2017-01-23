@@ -17,7 +17,6 @@ window.onload = function() {
     footerText.innerText = `All Rights Reserved. Zachary Bennett © ${(new Date()).getFullYear()}`;
     const footer = document.querySelector('#footer');
     footer.appendChild(footerText);
-    console.log(worldWindWindow.layers.forEach(layer => console.log(layer.displayName)));
 }
 
 //helper functions----------------------------------------------
@@ -47,6 +46,7 @@ function showOrHideLayer() {
     const compassLayer = worldWindWindow.layers[2];
     const coordinatesLayer = worldWindWindow.layers[3];
     const viewControlsLayer = worldWindWindow.layers[4];
+    const placemarksLayer = worldWindWindow.layers[5];
 
     switch(this.dataset.layer) {
         case 'bingAerial':
@@ -60,6 +60,9 @@ function showOrHideLayer() {
             break;
         case 'viewControls':
             viewControlsLayer.opacity > 0 ? viewControlsLayer.opacity = 0 : viewControlsLayer.opacity = 1;
+            break;
+        case 'placemarks':
+            placemarksLayer.opacity > 0 ? placemarksLayer.opacity = 0 : placemarksLayer.opacity = 1;
             break;
     }
 }
@@ -114,6 +117,7 @@ function addStationLayer(nameArr, longArr, latArr) {
     }
     //apply layer to map
     worldWindWindow.addLayer(placemarkLayer); 
+    console.log(worldWindWindow.layers);
 }
 
 //takes user input and uses an animator to search for gps location
