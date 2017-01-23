@@ -1,3 +1,6 @@
+//check for browser
+console.log(navigator.userAgent);
+
 //globals
 let worldWindWindow;
 const layerButtons = document.querySelectorAll('button[data-layer]');
